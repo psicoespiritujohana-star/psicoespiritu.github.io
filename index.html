@@ -1060,8 +1060,7 @@
     const PENDING_PATH = 'reseñas_pendientes'; // ruta alternativa para moderación futura
 
     /*
-     ⚠️  REGLAS DE REALTIME DATABASE REQUERIDAS:
-     Ve a Firebase Console → Realtime Database → Reglas y pega esto:
+     ⚠️  REGLAS DE REALTIME DATABASE — pega esto en Firebase Console → Realtime Database → Reglas:
 
      {
        "rules": {
@@ -1070,16 +1069,14 @@
            ".write": true
          },
          "reseñas_pendientes": {
-           ".read": false,
+           ".read": true,
            ".write": true
          }
        }
      }
 
-     IMPORTANTE: La pantalla de "Firestore" que ves en tu consola es un
-     servicio DIFERENTE. Los datos de este código van a "Realtime Database".
-     Asegúrate de abrir: Firebase Console → Realtime Database (en el menú lateral)
-     para ver los datos que llegan.
+     NOTA: Los datos existentes están en "reseñas_pendientes". El código ahora
+     lee de ambas rutas y las muestra juntas. Los nuevos envíos van a "reseñas".
     */
 
     /* ════════════════════════════════════════
@@ -1233,20 +1230,37 @@
     }
 
     function loadReviews() {
-      db.ref(REVIEWS_PATH).orderByChild('fecha').once('value')
-        .then(snap => {
-          const data = snap.val();
-          if (!data) {
-            document.getElementById('reviews-loading').style.display = 'none';
-            document.getElementById('reviews-initial').style.display = 'grid';
-            return;
-          }
-          const arr = Object.values(data).sort((a, b) => (b.fecha || 0) - (a.fecha || 0));
-          renderReviews(arr);
-        })
-        .catch(() => {
-          document.getElementById('reviews-loading').innerHTML = '<p style="color:var(--text-muted);">No se pudieron cargar los testimonios.</p>';
-        });
+      // Lee ambas rutas en paralelo: reseñas (aprobadas) + reseñas_pendientes (legacy)
+      // Esto asegura que los datos que ya están en Firebase aparezcan sin importar en qué ruta están
+      Promise.all([
+        db.ref(REVIEWS_PATH).once('value').catch(() => null),
+        db.ref(PENDING_PATH).once('value').catch(() => null)
+      ]).then(([snapAprobadas, snapPendientes]) => {
+        const dataAprobadas   = snapAprobadas   ? snapAprobadas.val()   : null;
+        const dataPendientes  = snapPendientes  ? snapPendientes.val()  : null;
+
+        // Combinar ambos conjuntos de datos
+        const arr = [
+          ...(dataAprobadas  ? Object.values(dataAprobadas)  : []),
+          ...(dataPendientes ? Object.values(dataPendientes) : [])
+        ];
+
+        if (!arr.length) {
+          // No hay datos aún — ocultar spinner, mostrar contenedor vacío
+          document.getElementById('reviews-loading').style.display = 'none';
+          document.getElementById('reviews-initial').style.display = 'grid';
+          document.getElementById('reviews-initial').innerHTML =
+            '<p style="color:var(--text-muted);font-size:.9rem;grid-column:1/-1;text-align:center;padding:2rem 0;">Sé el primero en compartir tu experiencia ✨</p>';
+          return;
+        }
+
+        // Ordenar más reciente primero
+        arr.sort((a, b) => (b.fecha || 0) - (a.fecha || 0));
+        renderReviews(arr);
+      }).catch(() => {
+        document.getElementById('reviews-loading').innerHTML =
+          '<p style="color:var(--text-muted);">No se pudieron cargar los testimonios. Verifica las reglas de Firebase.</p>';
+      });
     }
 
     function toggleMoreReviews() {
