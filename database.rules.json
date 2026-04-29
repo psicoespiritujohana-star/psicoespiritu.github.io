@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "reseñas_pendientes": {
+      ".read": false,
+      ".write": true,
+      ".validate": "newData.hasChildren(['nombre', 'estrellas', 'comentario', 'fecha'])",
+      "$id": {
+        ".validate": "newData.child('nombre').isString() && newData.child('nombre').val().length <= 60 && newData.child('estrellas').isNumber() && newData.child('estrellas').val() >= 1 && newData.child('estrellas').val() <= 5 && newData.child('comentario').isString() && newData.child('comentario').val().length >= 20 && newData.child('comentario').val().length <= 600 && newData.child('fecha').isNumber()"
+      }
+    },
+    "reseñas": {
+      ".read": true,
+      ".write": false,
+      "$id": {
+        ".validate": "data.hasChildren(['nombre', 'estrellas', 'comentario', 'fecha'])"
+      }
+    }
+  }
+}

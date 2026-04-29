@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psicología y Espíritu | Equilibrio con Propósito</title>
+  <meta name="description" content="Dra. Johana Eraso Diaz — Especialista en Neuropsicología y Psicología Clínica. Atención independiente a adultos y niños. Consultas presenciales en Girardot y virtuales. Agenda tu cita hoy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy:      #1b3a5c;
+      --navy-deep: #0e2238;
+      --sky:       #7aa4d0;
+      --sky-light: #b8d3ea;
+      --gold:      #c9a227;
+      --gold-light:#e8c96a;
+      --cream:     #f8f6f2;
+      --white:     #ffffff;
+      --text:      #2c3e50;
+      --text-muted:#6b7f93;
+      --card-bg:   #f0f5fa;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Jost', sans-serif;
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --shadow-card: 0 8px 40px rgba(27,58,92,0.10);
+      --shadow-hover: 0 20px 60px rgba(27,58,92,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .container { width: 100%; max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse-ring { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes slideIn { from { opacity:0; transform:translateX(60px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes slideOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(-60px); } }
+
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s var(--ease-out-expo), transform .8s var(--ease-out-expo); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HEADER ── */
+    #header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .4s, box-shadow .4s; }
+    #header.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 24px rgba(27,58,92,0.09); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo img { height: 52px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+    .nav-links a { font-size: .85rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); position: relative; transition: color .25s; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width .3s var(--ease-out-expo); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .btn-nav { background: var(--navy); color: var(--white) !important; padding: .55rem 1.4rem; border-radius: 40px; font-weight: 500; transition: background .25s, transform .2s !important; }
+    .btn-nav:hover { background: var(--gold) !important; transform: translateY(-1px); }
+    .btn-nav::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .mobile-nav { display: none; flex-direction: column; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); padding: 1.2rem 1.5rem 1.5rem; border-top: 1px solid var(--sky-light); }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { padding: .7rem 0; font-size: .95rem; font-weight: 500; color: var(--navy); border-bottom: 1px solid var(--sky-light); }
+
+    /* ── HERO ── */
+    #hero { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; background: var(--navy-deep); }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 75% 50%, rgba(122,164,208,0.22) 0%, transparent 70%), radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,162,39,0.10) 0%, transparent 60%), linear-gradient(145deg, #0e2238 0%, #1b3a5c 50%, #0e2238 100%); }
+    .hero-pattern { position: absolute; inset: 0; opacity: .04; background-image: repeating-linear-gradient(45deg, var(--white) 0, var(--white) 1px, transparent 0, transparent 50%); background-size: 40px 40px; }
+    .hero-circle { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: clamp(360px,45vw,640px); aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(201,162,39,0.18); pointer-events: none; }
+    .hero-circle::before { content: ''; position: absolute; inset: 40px; border-radius: 50%; border: 1px solid rgba(201,162,39,0.12); }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: .75rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.6rem; animation: fadeUp .8s var(--ease-out-expo) .1s both; }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 32px; height: 1px; background: var(--gold); opacity: .6; }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2.8rem,6.5vw,5.2rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 1.5rem; animation: fadeUp .9s var(--ease-out-expo) .25s both; }
+    .hero-title em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+    .hero-sub { font-size: clamp(1rem,1.8vw,1.18rem); font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.70); max-width: 520px; margin-bottom: 2.8rem; animation: fadeUp 1s var(--ease-out-expo) .4s both; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; animation: fadeUp 1s var(--ease-out-expo) .55s both; }
+    .btn-primary { display: inline-flex; align-items: center; gap: .6rem; background: var(--gold); color: var(--navy-deep); font-size: .88rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 50px; border: none; cursor: pointer; transition: transform .25s, box-shadow .25s, background .25s; box-shadow: 0 8px 30px rgba(201,162,39,0.35); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201,162,39,0.50); background: var(--gold-light); }
+    .btn-outline { display: inline-flex; align-items: center; gap: .6rem; background: transparent; color: var(--white); font-size: .88rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 1rem 2.2rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: border-color .25s, background .25s; }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,162,39,0.08); }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .5rem; color: rgba(255,255,255,0.4); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; animation: fadeIn 1.2s ease 1.2s both; }
+    .hero-scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); animation: float 2s ease-in-out infinite; }
+
+    /* ── SOBRE MÍ ── */
+    #sobre-mi { padding: clamp(5rem,10vw,9rem) 0; background: var(--cream); }
+    .section-label { font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.2rem); font-weight: 300; line-height: 1.2; color: var(--navy); }
+    .section-title em { font-style: italic; color: var(--sky); }
+    .section-divider { width: 48px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--sky-light)); margin: 1.4rem 0 2rem; }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem,6vw,6rem); align-items: center; }
+    .sobre-photo-wrap { position: relative; }
+    .sobre-photo-frame { position: relative; border-radius: 4px 40% 4px 4px; overflow: hidden; aspect-ratio: 4/5; box-shadow: var(--shadow-hover); }
+    .sobre-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .6s var(--ease-out-expo); }
+    .sobre-photo-frame:hover img { transform: scale(1.03); }
+    .sobre-photo-accent { position: absolute; bottom: -20px; left: -20px; width: 60%; height: 60%; border-radius: 4px; border: 2px solid var(--gold); opacity: .35; z-index: -1; }
+    .sobre-badge { position: absolute; bottom: 24px; right: -16px; background: var(--navy); color: var(--white); padding: 1rem 1.4rem; border-radius: 12px; box-shadow: 0 8px 30px rgba(14,34,56,0.3); text-align: center; min-width: 120px; }
+    .sobre-badge strong { display: block; font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--gold-light); line-height: 1; }
+    .sobre-badge span { font-size: .72rem; letter-spacing: .08em; opacity: .7; }
+    .sobre-text .intro { font-family: var(--font-display); font-size: clamp(1.1rem,2vw,1.35rem); font-style: italic; line-height: 1.65; color: var(--navy); margin-bottom: 1.4rem; }
+    .sobre-text p { font-size: .95rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .sobre-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.8rem; }
+    .tag { font-size: .75rem; font-weight: 500; letter-spacing: .07em; color: var(--navy); background: rgba(122,164,208,0.15); border: 1px solid rgba(122,164,208,0.3); padding: .4rem .9rem; border-radius: 40px; }
+
+    /* ── GALERÍA ── */
+    #galeria { padding: clamp(5rem,10vw,9rem) 0; background: var(--white); }
+    .galeria-header { text-align: center; margin-bottom: clamp(2.5rem,5vw,4rem); }
+    .galeria-header .section-divider { margin-inline: auto; }
+    .galeria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .galeria-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/5; background: var(--card-bg); cursor: pointer; }
+    .galeria-item:first-child { grid-row: span 1; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease-out-expo); }
+    .galeria-item:hover img { transform: scale(1.06); }
+    .galeria-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,34,56,0.7) 0%, transparent 50%); opacity: 0; transition: opacity .4s; display: flex; align-items: flex-end; padding: 1.4rem; }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+    .galeria-overlay span { color: var(--white); font-size: .82rem; letter-spacing: .08em; }
+    .galeria-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; background: linear-gradient(135deg, var(--card-bg) 0%, var(--sky-light) 100%); color: var(--sky); }
+    .galeria-placeholder p { font-size: .78rem; color: var(--text-muted); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 8px; box-shadow: 0 20px 80px rgba(0,0,0,0.5); }
+    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.12); border: none; color: white; width: 44px; height: 44px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+    /* ══════════════════════════════════════
+       CARRUSEL DE DIPLOMAS
+    ══════════════════════════════════════ */
+    #diplomas { padding: clamp(5rem,10vw,9rem) 0; background: var(--navy-deep); position: relative; overflow: hidden; }
+    .diplomas-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 0% 50%, rgba(122,164,208,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 60%, rgba(201,162,39,0.05) 0%, transparent 60%); pointer-events: none; }
+    .diplomas-header { text-align: center; margin-bottom: clamp(2.5rem,5vw,4rem); position: relative; z-index: 1; }
+    .diplomas-header .section-label { color: var(--gold-light); }
+    .diplomas-header .section-title { color: var(--white); }
+    .diplomas-header .section-title em { color: var(--sky-light); }
+    .diplomas-header .section-divider { margin-inline: auto; }
+
+    .carousel-wrap { position: relative; z-index: 1; user-select: none; }
+    .carousel-track-outer { overflow: hidden; border-radius: 16px; }
+    .carousel-track { display: flex; transition: transform .55s var(--ease-out-expo); }
+    .carousel-slide { min-width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; padding: 0 .4rem; }
+
+    /* En pantallas medianas: 2 columnas */
+    @media (max-width: 860px) { .carousel-slide { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 540px) { .carousel-slide { grid-template-columns: 1fr; } }
+
+    .diploma-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color .3s, transform .3s; aspect-ratio: 4/3; position: relative; }
+    .diploma-card:hover { border-color: rgba(201,162,39,0.4); transform: translateY(-4px); }
+    .diploma-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .diploma-card:hover img { transform: scale(1.04); }
+    .diploma-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,34,56,0.8) 0%, transparent 55%); opacity: 0; transition: opacity .3s; display: flex; align-items: flex-end; padding: 1rem; }
+    .diploma-card:hover .diploma-card-overlay { opacity: 1; }
+    .diploma-card-overlay span { color: rgba(255,255,255,0.9); font-size: .78rem; letter-spacing: .06em; }
+    .diploma-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: .6rem; color: rgba(255,255,255,0.3); font-size: .78rem; }
+
+    /* Controles carrusel */
+    .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 2rem; position: relative; z-index: 1; }
+    .carousel-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); color: white; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .25s, border-color .25s, transform .2s; flex-shrink: 0; }
+    .carousel-btn:hover { background: rgba(201,162,39,0.18); border-color: rgba(201,162,39,0.4); transform: scale(1.08); }
+    .carousel-btn:disabled { opacity: .3; cursor: not-allowed; transform: none; }
+    .carousel-dots { display: flex; gap: .5rem; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: background .25s, transform .25s; padding: 0; }
+    .carousel-dot.active { background: var(--gold); transform: scale(1.25); }
+
+    /* ── SERVICIOS ── */
+    #servicios { padding: clamp(5rem,10vw,9rem) 0; background: var(--navy-deep); position: relative; overflow: hidden; }
+    .servicios-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 0% 50%, rgba(122,164,208,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 100% 60%, rgba(201,162,39,0.06) 0%, transparent 60%); pointer-events: none; }
+    .servicios-header { text-align: center; margin-bottom: clamp(2.5rem,5vw,4rem); position: relative; z-index: 1; }
+    .servicios-header .section-label { color: var(--gold-light); }
+    .servicios-header .section-title { color: var(--white); }
+    .servicios-header .section-title em { color: var(--sky-light); }
+    .servicios-header .section-divider { margin-inline: auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.6rem; position: relative; z-index: 1; }
+    .pricing-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 20px; padding: clamp(2rem,4vw,3rem); position: relative; overflow: hidden; transition: border-color .3s, transform .35s, background .3s; backdrop-filter: blur(8px); }
+    .pricing-card:hover { border-color: rgba(201,162,39,0.4); transform: translateY(-6px); background: rgba(255,255,255,0.07); }
+    .pricing-card.featured { border-color: rgba(201,162,39,0.35); background: rgba(201,162,39,0.06); }
+    .pricing-card.hero-featured { border-color: var(--gold); background: rgba(201,162,39,0.07); transform: scale(1.03); box-shadow: 0 0 0 1px rgba(201,162,39,0.5), 0 20px 60px rgba(201,162,39,0.18); z-index: 2; }
+    .pricing-card.hero-featured:hover { transform: scale(1.03) translateY(-6px); }
+    .pricing-badge-hero { display: inline-flex; align-items: center; gap: .35rem; background: linear-gradient(90deg, var(--gold), var(--gold-light)); color: var(--navy-deep); font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .38rem .85rem; border-radius: 40px; margin-bottom: 1.4rem; box-shadow: 0 4px 14px rgba(201,162,39,0.35); }
+    .pricing-badge { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--gold); color: var(--navy-deep); font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .3rem .7rem; border-radius: 40px; }
+    .pricing-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.6rem; background: rgba(122,164,208,0.15); }
+    .pricing-type { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--sky-light); margin-bottom: .5rem; }
+    .pricing-card.featured .pricing-type, .pricing-card.hero-featured .pricing-type { color: var(--gold-light); }
+    .pricing-name { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; color: var(--white); margin-bottom: 1.8rem; line-height: 1.2; }
+    .pricing-subtitle { font-size: .78rem; letter-spacing: .08em; color: rgba(255,255,255,0.4); margin-bottom: .6rem; text-transform: uppercase; font-weight: 500; }
+    .pricing-desc { font-size: .84rem; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 1.4rem; font-style: italic; }
+    .pricing-price { margin-bottom: 2rem; }
+    .price-original { font-size: .9rem; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: .25rem; display: block; }
+    .pricing-price .currency { font-size: 1rem; color: var(--gold-light); vertical-align: top; line-height: 2; }
+    .pricing-price .amount { font-family: var(--font-display); font-size: 3.2rem; font-weight: 600; color: var(--white); line-height: 1; }
+    .pricing-price .period { font-size: .8rem; color: rgba(255,255,255,0.45); margin-left: .3rem; }
+    .price-saving { display: inline-block; margin-top: .5rem; font-size: .78rem; font-weight: 600; color: #4ade80; background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.25); padding: .3rem .75rem; border-radius: 40px; }
+    .pricing-features { display: flex; flex-direction: column; gap: .85rem; margin-bottom: 2.2rem; }
+    .pricing-feature { display: flex; align-items: flex-start; gap: .75rem; font-size: .9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .pricing-feature-dot { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; background: rgba(122,164,208,0.2); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .pricing-feature-dot svg { color: var(--sky); }
+    .pricing-card.featured .pricing-feature-dot, .pricing-card.hero-featured .pricing-feature-dot { background: rgba(201,162,39,0.2); }
+    .pricing-card.featured .pricing-feature-dot svg, .pricing-card.hero-featured .pricing-feature-dot svg { color: var(--gold); }
+    .btn-pricing { display: block; width: 100%; text-align: center; padding: .9rem; border-radius: 50px; font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; transition: all .25s; border: 1px solid rgba(255,255,255,0.2); color: var(--white); cursor: pointer; }
+    .btn-pricing:hover { border-color: var(--sky); background: rgba(122,164,208,0.12); }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { padding: clamp(4rem,8vw,7rem) 0; background: var(--white); overflow: hidden; }
+    .testimonios-header { text-align: center; margin-bottom: 2rem; }
+    .testimonios-header .section-divider { margin-inline: auto; }
+    .rating-summary { display: inline-flex; align-items: center; gap: 1rem; background: var(--cream); border: 1px solid rgba(201,162,39,0.2); border-radius: 50px; padding: .65rem 1.6rem; margin: 0 auto 2.8rem; }
+    .rating-summary-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+    .rating-summary-score { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--navy); line-height: 1; }
+    .rating-summary-score span { font-size: .85rem; font-weight: 300; color: var(--text-muted); }
+    .rating-summary-count { font-size: .78rem; color: var(--text-muted); border-left: 1px solid rgba(27,58,92,0.12); padding-left: 1rem; }
+    .testimonios-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    #more-reviews { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; margin-top: 1.5rem; overflow: hidden; max-height: 0; opacity: 0; transition: max-height .6s cubic-bezier(0.19,1,0.22,1), opacity .5s ease; }
+    #more-reviews.expanded { max-height: 4000px; opacity: 1; }
+    .testimonio-card { background: var(--cream); border-radius: 16px; padding: 2rem; position: relative; border: 1px solid transparent; transition: border-color .3s, box-shadow .3s, transform .3s; }
+    .testimonio-card:hover { border-color: rgba(122,164,208,0.25); box-shadow: var(--shadow-card); transform: translateY(-3px); }
+    .testimonio-quote { font-family: var(--font-display); font-size: 3.5rem; line-height: .6; color: var(--sky-light); margin-bottom: .8rem; }
+    .testimonio-text { font-size: .92rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.4rem; font-style: italic; }
+    .testimonio-author { display: flex; align-items: center; gap: .8rem; }
+    .testimonio-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--navy)); display: flex; align-items: center; justify-content: center; color: white; font-size: .85rem; font-weight: 600; flex-shrink: 0; }
+    .testimonio-name { font-size: .85rem; font-weight: 600; color: var(--navy); }
+    .testimonio-stars { font-size: .75rem; color: var(--gold); letter-spacing: 1px; }
+    .testimonio-date { font-size: .7rem; color: var(--text-muted); margin-top: .1rem; }
+    .testimonios-loading { text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: .9rem; }
+    .testimonios-loading .loader { width: 32px; height: 32px; border: 3px solid var(--sky-light); border-top-color: var(--navy); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 1rem; }
+    .btn-ver-mas { display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem; font-size: .85rem; font-weight: 600; letter-spacing: .08em; color: var(--navy); background: none; border: 1.5px solid rgba(27,58,92,0.2); border-radius: 40px; padding: .7rem 1.8rem; cursor: pointer; transition: border-color .25s, color .25s, background .25s; }
+    .btn-ver-mas:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.05); }
+    .btn-ver-mas svg { transition: transform .3s; }
+    .btn-ver-mas.active svg { transform: rotate(180deg); }
+
+    /* ── FORMULARIO DE RESEÑA ── */
+    .review-form-wrap { margin-top: 3.5rem; background: var(--cream); border-radius: 20px; padding: clamp(1.8rem,4vw,3rem); border: 1px solid rgba(122,164,208,0.15); }
+    .review-form-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--navy); margin-bottom: .4rem; }
+    .review-form-subtitle { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: .4rem; }
+    .form-field label { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+    .form-field input, .form-field textarea { font-family: var(--font-body); font-size: .92rem; color: var(--text); background: var(--white); border: 1.5px solid rgba(27,58,92,0.12); border-radius: 10px; padding: .75rem 1rem; outline: none; transition: border-color .25s, box-shadow .25s; resize: vertical; }
+    .form-field input:focus, .form-field textarea:focus { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(122,164,208,0.15); }
+    .form-field input:disabled { background: var(--card-bg); color: var(--text-muted); cursor: not-allowed; }
+    .form-field textarea { min-height: 110px; }
+    .anon-row { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.2rem; }
+    .toggle-switch { position: relative; width: 42px; height: 24px; cursor: pointer; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-track { position: absolute; inset: 0; background: rgba(27,58,92,0.15); border-radius: 24px; transition: background .25s; }
+    .toggle-thumb { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: var(--white); border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,0.2); transition: transform .25s; }
+    .toggle-switch input:checked ~ .toggle-track { background: var(--navy); }
+    .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(18px); }
+    .anon-label { font-size: .85rem; color: var(--text-muted); cursor: pointer; user-select: none; }
+    .stars-selector { display: flex; gap: .3rem; margin-bottom: 1.2rem; }
+    .star-btn { background: none; border: none; cursor: pointer; padding: 2px; font-size: 1.6rem; color: #d1d5db; transition: color .15s, transform .15s; line-height: 1; }
+    .star-btn:hover, .star-btn.hovered, .star-btn.selected { color: var(--gold); transform: scale(1.15); }
+    .stars-hint { font-size: .75rem; color: var(--text-muted); margin-left: .4rem; align-self: center; }
+    .btn-submit-review { display: inline-flex; align-items: center; gap: .6rem; background: var(--navy); color: var(--white); font-family: var(--font-body); font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .9rem 2rem; border-radius: 50px; border: none; cursor: pointer; transition: background .25s, transform .2s, box-shadow .25s; box-shadow: 0 6px 20px rgba(27,58,92,0.2); margin-top: 1rem; }
+    .btn-submit-review:hover { background: var(--gold); color: var(--navy-deep); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,162,39,0.3); }
+    .btn-submit-review:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .success-msg { display: none; align-items: center; gap: .75rem; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); border-radius: 12px; padding: 1rem 1.4rem; font-size: .9rem; color: #166534; margin-top: 1rem; }
+    .success-msg.show { display: flex; animation: fadeUp .4s ease; }
+    .error-msg { font-size: .78rem; color: #dc2626; margin-top: .3rem; display: none; }
+    .error-msg.show { display: block; }
+
+    /* ── AGENDAMIENTO ── */
+    #agendar { padding: clamp(5rem,10vw,9rem) 0; background: var(--cream); }
+    .agendar-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(3rem,6vw,6rem); align-items: center; }
+    .agendar-text .section-divider { margin: 1.4rem 0 2rem; }
+    .agendar-text p { font-size: .95rem; line-height: 1.85; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; }
+    .contact-item-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(27,58,92,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--navy); }
+    .contact-item-text { font-size: .88rem; color: var(--text-muted); }
+    .contact-item-text strong { display: block; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--navy); margin-bottom: .15rem; }
+    .agendar-widget { background: var(--white); border-radius: 20px; box-shadow: var(--shadow-card); padding: clamp(1.5rem,4vw,3rem); min-height: 420px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(122,164,208,0.15); }
+    .widget-placeholder { text-align: center; color: var(--text-muted); }
+    .widget-placeholder svg { margin: 0 auto 1rem; color: var(--sky-light); }
+    .widget-placeholder p { font-size: .88rem; line-height: 1.6; }
+    .widget-placeholder code { font-size: .75rem; background: var(--card-bg); padding: .2rem .5rem; border-radius: 4px; color: var(--navy); }
+
+    /* ── FAQ – PREGUNTAS FRECUENTES ── */
+    #faq { padding: clamp(5rem,10vw,8rem) 0; background: var(--navy-deep); position: relative; overflow: hidden; }
+    #faq::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 55% 50% at 100% 20%, rgba(122,164,208,0.07) 0%, transparent 65%), radial-gradient(ellipse 45% 60% at 0% 80%, rgba(201,162,39,0.05) 0%, transparent 60%); pointer-events: none; }
+    .faq-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(3rem,6vw,7rem); align-items: start; position: relative; z-index: 1; }
+    .faq-heading { position: sticky; top: 100px; }
+    .faq-heading .section-label { color: var(--gold-light); }
+    .faq-heading .section-title { color: var(--white); }
+    .faq-heading .section-title em { color: var(--sky-light); }
+    .faq-heading .section-divider { margin: 1.4rem 0 1.6rem; }
+    .faq-heading p { font-size: .9rem; line-height: 1.8; color: rgba(255,255,255,0.45); margin-bottom: 2rem; }
+    .faq-cta { display: inline-flex; align-items: center; gap: .55rem; background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.3); color: var(--gold-light); font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .75rem 1.4rem; border-radius: 40px; transition: background .25s, border-color .25s; }
+    .faq-cta:hover { background: rgba(201,162,39,0.22); border-color: var(--gold); }
+    .faq-list { display: flex; flex-direction: column; gap: .75rem; }
+    .faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; overflow: hidden; transition: border-color .3s, background .3s; }
+    .faq-item[open] { border-color: rgba(201,162,39,0.35); background: rgba(201,162,39,0.05); }
+    .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 1.6rem; cursor: pointer; list-style: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-question { font-family: var(--font-body); font-size: .95rem; font-weight: 500; color: rgba(255,255,255,0.85); line-height: 1.4; transition: color .25s; }
+    .faq-item[open] .faq-question { color: var(--gold-light); }
+    .faq-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); transition: transform .35s var(--ease-out-expo), border-color .25s, color .25s, background .25s; }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.12); }
+    .faq-answer { padding: 0 1.6rem; max-height: 0; overflow: hidden; transition: max-height .45s var(--ease-out-expo), padding .35s ease; }
+    .faq-item[open] .faq-answer { max-height: 400px; padding-bottom: 1.4rem; }
+    .faq-answer p { font-size: .9rem; line-height: 1.85; color: rgba(255,255,255,0.55); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1rem; }
+    .faq-answer strong { color: rgba(255,255,255,0.75); }
+    @media (max-width: 800px) {
+      .faq-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .faq-heading { position: static; }
+    }
+
+    /* ── WHATSAPP ── */
+    .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; display: flex; align-items: center; gap: .75rem; cursor: pointer; }
+    .whatsapp-label { background: var(--white); color: var(--navy); font-size: .78rem; font-weight: 600; padding: .5rem 1rem; border-radius: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.12); white-space: nowrap; opacity: 0; transform: translateX(10px); transition: opacity .3s, transform .3s; pointer-events: none; }
+    .whatsapp-float:hover .whatsapp-label { opacity: 1; transform: translateX(0); }
+    .whatsapp-btn { width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,0.45); transition: transform .25s, box-shadow .25s; position: relative; }
+    .whatsapp-btn:hover { transform: scale(1.08); box-shadow: 0 10px 30px rgba(37,211,102,0.55); }
+    .whatsapp-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid #25d366; animation: pulse-ring 2.2s ease-out infinite; }
+
+    /* ── FOOTER ── */
+    #footer { background: var(--navy-deep); padding: clamp(2.5rem,5vw,4rem) 0 1.5rem; }
+    .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand img { height: 48px; margin-bottom: 1.2rem; filter: brightness(0) invert(1); opacity: .85; }
+    .footer-brand p { font-size: .85rem; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 280px; }
+    .footer-col h4 { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: .65rem; }
+    .footer-col li a { font-size: .85rem; color: rgba(255,255,255,0.45); transition: color .2s; }
+    .footer-col li a:hover { color: var(--sky-light); }
+    .social-links { display: flex; gap: .8rem; margin-top: .5rem; }
+    .social-link { width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); transition: background .25s, color .25s; }
+    .social-link:hover { background: var(--gold); color: var(--navy-deep); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; padding-top: 1.5rem; }
+    .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,0.3); }
+    .footer-bottom a { color: rgba(255,255,255,0.3); transition: color .2s; }
+    .footer-bottom a:hover { color: var(--sky-light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .sobre-grid { grid-template-columns: 1fr; }
+      .sobre-photo-wrap { max-width: 380px; margin-inline: auto; }
+      .agendar-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .galeria-grid { grid-template-columns: 1fr; }
+      .hero-circle { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.hero-featured { transform: scale(1); }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .sobre-badge { right: 8px; } }
+    .text-center { text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <nav class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <img src="img/LOGO PSICOLOGÍA Y ESPÍRITU.png" alt="Psicología y Espíritu" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="#sobre-mi">Sobre Mí</a></li>
+          <li><a href="#galeria">Experiencia</a></li>
+          <li><a href="#diplomas">Formación</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#agendar" class="btn-nav">Agendar Cita</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#sobre-mi">Sobre Mí</a>
+      <a href="#galeria">Experiencia</a>
+      <a href="#diplomas">Formación</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#faq">FAQ</a>
+      <a href="#agendar">Agendar Cita</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-circle"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Neuropsicología &amp; Psicología Clínica</p>
+        <h1 class="hero-title">Psicología<br /><em>y Espíritu</em></h1>
+        <p class="hero-sub">
+          <strong style="color:rgba(255,255,255,0.92);font-weight:500;">Dra. Johana Eraso Diaz</strong><br/>
+          Diplomada en Neuropsicología y Psicología Clínica — atención independiente, cercana y transformadora para adultos y niños.
+        </p>
+        <div class="hero-ctas">
+          <a href="#agendar" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Agenda tu Primera Cita
+          </a>
+          <a href="#servicios" class="btn-outline">Ver Servicios</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Descubrir</span>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-photo-wrap reveal">
+          <div class="sobre-photo-frame">
+            <img src="img/fotoperfil.jpeg" alt="Dra. Johana Eraso Diaz — Psicóloga Clínica" id="foto-doctora" />
+          </div>
+          <div class="sobre-photo-accent"></div>
+          <div class="sobre-badge">
+            <strong>+6</strong>
+            <span>años de<br/>experiencia</span>
+          </div>
+        </div>
+        <div class="sobre-text reveal">
+          <p class="section-label">Sobre Mí</p>
+          <h2 class="section-title">Conoce a la<br /><em>Dra. Johana Eraso Diaz</em></h2>
+          <div class="section-divider"></div>
+          <p class="intro">"El bienestar psicológico no es un lujo, es un derecho. Mi misión es acompañarte con rigor científico y profunda humanidad."</p>
+          <p>Psicóloga con experiencia en acompañamiento psicosocial en escenarios de violencia, eventos postraumáticos, capacitación de empoderamiento personal, psicoterapia individual e intervenciones psicológicas con enfoque cognitivo conductual.</p>
+          <div style="display:flex;align-items:center;gap:1rem;margin-top:1.4rem;margin-bottom:.2rem;padding:1rem 1.2rem;background:rgba(122,164,208,0.10);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" style="flex-shrink:0"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            <p style="font-size:.88rem;color:var(--navy);font-weight:500;margin:0;"><strong style="display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem;">Pacientes que atiendo</strong>Adultos y Niños</p>
+          </div>
+          <div class="sobre-tags">
+            <span class="tag">Celopatía</span>
+            <span class="tag">Depresión</span>
+            <span class="tag">Dependencia Emocional</span>
+            <span class="tag">Ansiedad</span>
+            <span class="tag">Duelo</span>
+            <span class="tag">Eventos Postraumáticos</span>
+            <span class="tag">Empoderamiento Personal</span>
+            <span class="tag">Neuropsicología</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="container">
+      <div class="galeria-header reveal">
+        <p class="section-label">Experiencia Presencial</p>
+        <h2 class="section-title">Espacios de <em>transformación</em></h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--text-muted);font-size:.92rem;max-width:520px;margin-inline:auto;margin-top:.5rem;">Consultas presenciales realizadas en un entorno cuidado, cálido y completamente confidencial.</p>
+      </div>
+      <div class="galeria-grid" id="galeria-grid">
+        <!-- Las 3 fotos se cargan desde Firebase o carpeta local -->
+        <div class="galeria-item reveal" onclick="openLightbox('img/img1.jpeg','Actividad Grupal')">
+          <img src="img/img1.jpeg" alt="Actividad grupal — Psicología y Espíritu" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="galeria-placeholder" style="display:none;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p>img1.jpeg</p>
+          </div>
+          <div class="galeria-overlay"><span>Actividad Grupal</span></div>
+        </div>
+        <div class="galeria-item reveal" onclick="openLightbox('img/img2.jpeg','Taller Comunitario')">
+          <img src="img/img2.jpeg" alt="Taller comunitario — Psicología y Espíritu" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="galeria-placeholder" style="display:none;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p>img2.jpeg</p>
+          </div>
+          <div class="galeria-overlay"><span>Taller Comunitario</span></div>
+        </div>
+        <div class="galeria-item reveal" onclick="openLightbox('img/img3.jpeg','Sesión Grupal')">
+          <img src="img/img3.jpeg" alt="Sesión grupal — Psicología y Espíritu" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="galeria-placeholder" style="display:none;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p>img3.jpeg</p>
+          </div>
+          <div class="galeria-overlay"><span>Espacio Terapéutico</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- CARRUSEL DE DIPLOMAS -->
+  <section id="diplomas">
+    <div class="diplomas-bg"></div>
+    <div class="container">
+      <div class="diplomas-header reveal">
+        <p class="section-label">Formación Académica</p>
+        <h2 class="section-title">Títulos &amp; <em>Certificaciones</em></h2>
+        <div class="section-divider"></div>
+        <p style="color:rgba(255,255,255,0.5);font-size:.92rem;max-width:520px;margin-inline:auto;margin-top:.5rem;">
+          Preparación rigurosa y certificada que respalda cada proceso terapéutico.
+        </p>
+      </div>
+
+      <div class="carousel-wrap reveal">
+        <div class="carousel-track-outer">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Las slides se generan con JS -->
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="btnPrev" onclick="carouselPrev()" aria-label="Anterior">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="btnNext" onclick="carouselNext()" aria-label="Siguiente">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="servicios-bg"></div>
+    <div class="container">
+      <div class="servicios-header reveal">
+        <p class="section-label">Servicios &amp; Tarifas</p>
+        <h2 class="section-title">Elige el camino<br /><em>hacia tu bienestar</em></h2>
+        <div class="section-divider"></div>
+        <p style="color:rgba(255,255,255,0.5);font-size:.92rem;max-width:480px;margin-inline:auto;margin-top:.5rem;">Cada persona es única. Por eso ofrezco modalidades flexibles para adaptarme a tu ritmo y necesidades.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7aa4d0" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <p class="pricing-subtitle">El primer paso</p>
+          <p class="pricing-type">Opción 1</p>
+          <h3 class="pricing-name">Sesión<br/>Estándar</h3>
+          <p class="pricing-desc">Ideal para comenzar tu proceso, recibir orientación clara y empezar a ver cambios desde el primer día.</p>
+          <div class="pricing-price"><span class="currency">$</span><span class="amount">89.000</span><span class="period">/ sesión</span></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Terapia Individual</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Consulta Online</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Orientación Vocacional</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>TCC o Terapia de Relajación</li>
+          </ul>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20gustar%C3%ADa%20adquirir%20la%20Sesi%C3%B3n%20Est%C3%A1ndar." target="_blank" rel="noopener" class="btn-pricing">Agendar mi sesión</a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <div class="pricing-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7aa4d0" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <p class="pricing-subtitle">Abordaje profundo</p>
+          <p class="pricing-type">Opción 2</p>
+          <h3 class="pricing-name">Sesión<br/>Especializada</h3>
+          <p class="pricing-desc">Intervenciones de alto nivel para situaciones que requieren experiencia clínica avanzada.</p>
+          <div class="pricing-price"><span class="currency">$</span><span class="amount">169.000</span><span class="period">/ sesión</span></div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Psicoterapia de Pareja</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Tratamiento Intensivo contra la Ansiedad</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Psicoterapia para Adulto Mayor</li>
+          </ul>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20gustar%C3%ADa%20adquirir%20la%20Sesi%C3%B3n%20Especializada." target="_blank" rel="noopener" class="btn-pricing">Agendar mi sesión</a>
+        </div>
+
+        <div class="pricing-card hero-featured reveal">
+          <div class="pricing-badge-hero">🔥 El más adquirido ⭐</div>
+          <div class="pricing-icon" style="background:rgba(201,162,39,0.15);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+          <p class="pricing-subtitle" style="color:rgba(201,162,39,0.6);">El proceso recomendado</p>
+          <p class="pricing-type">Opción 3</p>
+          <h3 class="pricing-name">Pack Evolución<br/><em style="font-size:1.1rem;color:var(--gold-light);">5 Sesiones</em></h3>
+          <p class="pricing-desc">El cambio real toma tiempo. Diseñado para quienes están verdaderamente comprometidos con su bienestar.</p>
+          <div class="pricing-price">
+            <span class="price-original">Valor Real: $445.000</span>
+            <div><span class="currency" style="color:var(--gold-light);">$</span><span class="amount" style="color:var(--gold-light);">390.000</span><span class="period">inversión total</span></div>
+            <span class="price-saving">✦ Tu ahorro: 12% — casi media sesión gratis</span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-feature-dot" style="background:rgba(201,162,39,0.2);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>5 Sesiones Estándar incluidas</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot" style="background:rgba(201,162,39,0.2);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Programadas a tu propio ritmo</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot" style="background:rgba(201,162,39,0.2);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Mejor precio por sesión garantizado</li>
+          </ul>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20interesa%20el%20Pack%20Evoluci%C3%B3n%20de%205%20Sesiones." target="_blank" rel="noopener" class="btn-pricing" style="background:var(--gold);border-color:var(--gold);color:var(--navy-deep);font-weight:700;">Quiero mi Pack con Descuento</a>
+        </div>
+
+        <div class="pricing-card featured reveal">
+          <div class="pricing-badge">Especializado</div>
+          <div class="pricing-icon" style="background:rgba(201,162,39,0.15);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <p class="pricing-subtitle" style="color:rgba(201,162,39,0.6);">Abordaje profundo y continuo</p>
+          <p class="pricing-type">Opción 4</p>
+          <h3 class="pricing-name">Pack Especializado<br/><em style="font-size:1.1rem;color:var(--gold-light);">5 Sesiones</em></h3>
+          <p class="pricing-desc">Para procesos que requieren intervención clínica avanzada y seguimiento constante.</p>
+          <div class="pricing-price">
+            <span class="price-original">Valor Real: $845.000</span>
+            <div><span class="currency">$</span><span class="amount">699.000</span><span class="period">inversión total</span></div>
+            <span class="price-saving">✦ Tu ahorro: más de $140.000</span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>5 Sesiones Especializadas a elegir</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Psicoterapia de Pareja</li>
+            <li class="pricing-feature"><span class="pricing-feature-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Tratamiento Intensivo contra la Ansiedad</li>
+          </ul>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20interesa%20el%20Pack%20Especializado%20de%205%20Sesiones." target="_blank" rel="noopener" class="btn-pricing" style="background:var(--gold);border-color:var(--gold);color:var(--navy-deep);">Solicitar Pack Especializado</a>
+        </div>
+      </div>
+
+      <!-- Ubicación -->
+      <div class="reveal" style="margin-top:3rem;position:relative;z-index:1;">
+        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,162,39,0.25);border-radius:16px;padding:1.6rem 2rem;display:flex;flex-wrap:wrap;align-items:flex-start;gap:1.4rem;">
+          <div style="display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:rgba(201,162,39,0.12);flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div style="flex:1;min-width:220px;">
+            <p style="font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-light);margin-bottom:.35rem;">Ubicación del Consultorio</p>
+            <p style="font-size:.95rem;color:rgba(255,255,255,0.85);font-weight:500;margin-bottom:.4rem;">Calle 11 #22, Girardot (252432)</p>
+            <p style="font-size:.82rem;color:rgba(255,255,255,0.45);line-height:1.6;">🔒 La dirección exacta se confirma vía WhatsApp al momento de agendar.</p>
+          </div>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20gustar%C3%ADa%20confirmar%20la%20direcci%C3%B3n%20del%20consultorio." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;align-self:center;background:#25d366;color:#fff;font-size:.8rem;font-weight:600;padding:.65rem 1.3rem;border-radius:40px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.073 23.208a.75.75 0 00.92.92l5.347-1.459A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.523-5.176-1.432l-.372-.22-3.853 1.051 1.052-3.852-.22-.372A9.953 9.953 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Confirmar dirección
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="testimonios-header reveal">
+        <p class="section-label">Lo que dicen mis pacientes</p>
+        <h2 class="section-title">Historias de <em>transformación</em></h2>
+        <div class="section-divider"></div>
+        <div style="display:flex;justify-content:center;">
+          <div class="rating-summary" id="rating-summary" style="display:none;">
+            <div class="rating-summary-stars" id="summary-stars">★★★★★</div>
+            <div class="rating-summary-score"><span id="summary-avg">5.0</span><span>/ 5.0</span></div>
+            <div class="rating-summary-count" id="summary-count">Basado en 0 experiencias</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonios-loading" id="reviews-loading">
+        <div class="loader"></div>
+        <p>Cargando testimonios…</p>
+      </div>
+
+      <div class="testimonios-grid" id="reviews-initial" style="display:none;"></div>
+      <div id="more-reviews"></div>
+
+      <div style="text-align:center;" id="ver-mas-wrap" style="display:none;">
+        <button class="btn-ver-mas" id="btn-ver-mas" onclick="toggleMoreReviews()">
+          Leer más historias
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+
+      <!-- Formulario de reseña -->
+      <div class="review-form-wrap reveal">
+        <h3 class="review-form-title">Comparte tu experiencia</h3>
+        <p class="review-form-subtitle">Tu testimonio puede inspirar a alguien que aún no se ha animado a dar el primer paso.</p>
+
+        <div class="anon-row">
+          <label class="toggle-switch" for="anon-toggle">
+            <input type="checkbox" id="anon-toggle" onchange="handleAnonToggle(this)" />
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
+          <span class="anon-label" onclick="document.getElementById('anon-toggle').click()">Publicar como <strong>Paciente Anónimo</strong></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="review-name">Tu nombre</label>
+            <input type="text" id="review-name" placeholder="Ej: María G." maxlength="60" />
+          </div>
+          <div class="form-field" style="justify-content:flex-end;">
+            <label>Tu calificación</label>
+            <div style="display:flex;align-items:center;flex-wrap:wrap;gap:.2rem;margin-top:.3rem;">
+              <div class="stars-selector" id="star-selector">
+                <button type="button" class="star-btn" data-val="1" onmouseover="hoverStars(1)" onmouseout="resetStarHover()" onclick="selectStar(1)">★</button>
+                <button type="button" class="star-btn" data-val="2" onmouseover="hoverStars(2)" onmouseout="resetStarHover()" onclick="selectStar(2)">★</button>
+                <button type="button" class="star-btn" data-val="3" onmouseover="hoverStars(3)" onmouseout="resetStarHover()" onclick="selectStar(3)">★</button>
+                <button type="button" class="star-btn" data-val="4" onmouseover="hoverStars(4)" onmouseout="resetStarHover()" onclick="selectStar(4)">★</button>
+                <button type="button" class="star-btn" data-val="5" onmouseover="hoverStars(5)" onmouseout="resetStarHover()" onclick="selectStar(5)">★</button>
+              </div>
+              <span class="stars-hint" id="stars-hint">Selecciona</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field" style="margin-bottom:0;">
+          <label for="review-comment">Tu experiencia</label>
+          <textarea id="review-comment" placeholder="Cuéntanos tu experiencia con la Dra. Johana…" maxlength="600"></textarea>
+          <span class="error-msg" id="comment-error"></span>
+        </div>
+
+        <button class="btn-submit-review" id="btn-submit" onclick="submitReview()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Publicar Testimonio
+        </button>
+
+        <div class="success-msg" id="success-msg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <span>¡Gracias por compartir tu experiencia! Tu testimonio está pendiente de revisión y aparecerá pronto.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — PREGUNTAS FRECUENTES -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-inner">
+        <!-- Columna izquierda: encabezado -->
+        <div class="faq-heading reveal">
+          <p class="section-label">FAQ</p>
+          <h2 class="section-title">Resolvemos<br /><em>tus dudas</em></h2>
+          <div class="section-divider"></div>
+          <p>Información clara para que des el primer paso con total tranquilidad. Si tienes alguna pregunta adicional, no dudes en escribirme.</p>
+          <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20tengo%20una%20pregunta%20antes%20de%20agendar%20mi%20cita." target="_blank" rel="noopener" class="faq-cta">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.073 23.208a.75.75 0 00.92.92l5.347-1.459A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.523-5.176-1.432l-.372-.22-3.853 1.051 1.052-3.852-.22-.372A9.953 9.953 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Escribirme al WhatsApp
+          </a>
+        </div>
+
+        <!-- Columna derecha: acordeón -->
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿Cómo es el proceso para agendar una cita?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Es muy sencillo. Solo debes hacer clic en cualquiera de los botones de agendamiento. Esto te dirigirá a mi <strong>WhatsApp personal</strong>, donde me pondré en contacto contigo para coordinar el día y la hora que mejor se adapten a tu disponibilidad.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿Qué métodos de pago están disponibles?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Para tu comodidad, aceptamos <strong>transferencias bancarias</strong> (Nequi, Daviplata, Bancolombia y PayPal) y <strong>pago en efectivo</strong> para las consultas presenciales. Los detalles exactos te los proporcionaré vía WhatsApp al momento de confirmar tu cita.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿Dónde se realizan las consultas presenciales?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Mi consultorio está ubicado en <strong>Girardot (Calle 11 #22)</strong>. Sin embargo, por políticas de privacidad, la dirección exacta y el número del consultorio te los confirmaré de manera interna una vez agendada tu sesión.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿Cuánto tiempo dura cada sesión y con qué frecuencia debo asistir?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Cada sesión tiene una duración aproximada de <strong>60 minutos</strong>. La frecuencia dependerá de tus necesidades —generalmente se recomienda iniciar con <strong>una sesión semanal</strong>—, pero siempre avanzaremos a tu propio ritmo.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿La terapia psicológica realmente da resultados favorables?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Absolutamente. Con más de <strong>6 años de experiencia</strong> utilizando enfoques basados en la evidencia científica (como la <strong>Terapia Cognitivo Conductual</strong>), te brindaré herramientas reales y prácticas. El éxito depende de mi guía profesional y de tu compromiso continuo con el proceso de sanación.</p></div>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              <span class="faq-question">¿Atiendes a niños o solamente a adultos?</span>
+              <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </summary>
+            <div class="faq-answer"><p>Brindo atención psicológica tanto a <strong>adultos como a niños</strong>. Cuento con diplomados en Neuropsicología y Psicología Clínica, lo que me permite adaptar las metodologías según la edad del paciente.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDAMIENTO -->
+   <!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/psicoespiritu-johana" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+  <section id="agendar">
+    <div class="container">
+      <div class="agendar-inner">
+        <div class="agendar-text reveal">
+          <p class="section-label">Agenda tu Cita</p>
+          <h2 class="section-title">Tu bienestar<br /><em>comienza aquí</em></h2>
+          <div class="section-divider"></div>
+          <p>El primer paso es el más valiente. Reserva tu sesión en el horario que mejor se adapte a tu día a día.</p>
+          <p>Si tienes preguntas antes de agendar, no dudes en contactarme. Estoy aquí para acompañarte desde el primer momento.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.9a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div class="contact-item-text"><strong>WhatsApp / Teléfono</strong>+57 311 644 9502</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="contact-item-text"><strong>Correo Electrónico</strong>psicologiayespiritu@gmail.com</div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="contact-item-text"><strong>Horarios de Atención</strong>Lunes a Viernes: 8am – 7pm<br/>Sábados: 9am – 2pm</div>
+            </div>
+          </div>
+        </div>
+        <div class="agendar-widget reveal">
+          <div class="widget-placeholder">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <p><strong style="color:var(--navy);display:block;margin-bottom:.4rem">Widget de Agendamiento</strong>Inserta aquí el código de tu plataforma de citas.<br/><code>Calendly · Acuity · SimplyBook</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/573116449502?text=Hola%20Dra.%20Johana%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="whatsapp-label">¡Escríbeme ahora!</span>
+    <div class="whatsapp-btn">
+      <div class="whatsapp-ring"></div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.073 23.208a.75.75 0 00.92.92l5.347-1.459A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.523-5.176-1.432l-.372-.22-3.853 1.051 1.052-3.852-.22-.372A9.953 9.953 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+    </div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="img/LOGO PSICOLOGÍA Y ESPÍRITU.png" alt="Psicología y Espíritu" loading="lazy" />
+          <p>Dra. Johana Eraso Diaz — Especialista independiente en Neuropsicología y Psicología Clínica. Atención personalizada para adultos y niños.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#galeria">Experiencia</a></li>
+            <li><a href="#diplomas">Formación</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#faq">Preguntas Frecuentes</a></li>
+            <li><a href="#agendar">Agendar Cita</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Redes Sociales</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="https://wa.me/573116449502" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.073 23.208a.75.75 0 00.92.92l5.347-1.459A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.523-5.176-1.432l-.372-.22-3.853 1.051 1.052-3.852-.22-.372A9.953 9.953 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg></a>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <h4>Contacto</h4>
+            <ul>
+              <li><a href="mailto:psicologiayespiritu@gmail.com">psicologiayespiritu@gmail.com</a></li>
+              <li><a href="https://wa.me/573116449502" target="_blank">WhatsApp: +57 311 644 9502</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Psicología y Espíritu — Dra. Johana Eraso Diaz. Especialista Independiente.</p>
+        <p><a href="#">Política de Privacidad</a> · <a href="#">Términos de Uso</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    // ── AÑO Y HEADER ──
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+    // ── HAMBURGER ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+    mobileNav.querySelectorAll('a').forEach(l => l.addEventListener('click', () => { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); }));
+
+    // ── REVEAL ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── SMOOTH SCROLL ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+      });
+    });
+
+    // ── LIGHTBOX ──
+    function openLightbox(src, alt) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src; img.alt = alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-close')) return;
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ══════════════════════════════════════
+    //  CARRUSEL DE DIPLOMAS
+    // ══════════════════════════════════════
+    const diplomas = [
+      { src: 'img/titulo1.jpeg', label: 'Diplomado en Interpretación del Lenguaje Corporal' },
+      { src: 'img/titulo2.jpeg', label: 'Certificación SENA' },
+      { src: 'img/titulo3.jpeg', label: 'Diplomado en Psicología Clínica — CIL' },
+      { src: 'img/titulo4.jpeg', label: 'Certificación SENA' },
+      { src: 'img/titulo5.jpeg', label: 'Título en Psicología' },
+      { src: 'img/titulo6.jpeg', label: 'Curso de Técnicas Psicológicas' },
+      { src: 'img/titulo7.jpeg', label: 'Certificación SENA' },
+    ];
+
+    const PER_SLIDE = 3; // cuántos diplomas por slide (ajusta si cambias breakpoints)
+    let currentSlide = 0;
+    const totalSlides = Math.ceil(diplomas.length / PER_SLIDE);
+
+    function buildCarousel() {
+      const track = document.getElementById('carouselTrack');
+      const dotsWrap = document.getElementById('carouselDots');
+      track.innerHTML = '';
+      dotsWrap.innerHTML = '';
+
+      for (let s = 0; s < totalSlides; s++) {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-slide';
+        const chunk = diplomas.slice(s * PER_SLIDE, s * PER_SLIDE + PER_SLIDE);
+        chunk.forEach(d => {
+          const card = document.createElement('div');
+          card.className = 'diploma-card';
+          card.onclick = () => openLightbox(d.src, d.label);
+          card.innerHTML = `
+            <img src="${d.src}" alt="${d.label}" loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="diploma-placeholder" style="display:none;">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>${d.src}</span>
+            </div>
+            <div class="diploma-card-overlay"><span>${d.label}</span></div>`;
+          slide.appendChild(card);
+        });
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (s === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(s);
+        dot.setAttribute('aria-label', `Slide ${s + 1}`);
+        dotsWrap.appendChild(dot);
+      }
+      updateCarouselUI();
+    }
+
+    function goToSlide(n) {
+      currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
+      document.getElementById('carouselTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateCarouselUI();
+    }
+    function carouselPrev() { goToSlide(currentSlide - 1); }
+    function carouselNext() { goToSlide(currentSlide + 1); }
+
+    function updateCarouselUI() {
+      document.getElementById('btnPrev').disabled = currentSlide === 0;
+      document.getElementById('btnNext').disabled = currentSlide === totalSlides - 1;
+      document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    // Swipe en móvil
+    let touchStartX = 0;
+    document.getElementById('carouselTrack')?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.getElementById('carouselTrack')?.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) diff > 0 ? carouselNext() : carouselPrev();
+    });
+
+    // ── FAQ ACCORDION ──
+    // Cierra automáticamente el ítem abierto anterior al abrir uno nuevo
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item && other.open) other.removeAttribute('open');
+          });
+        }
+      });
+    });
+
+    buildCarousel();
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       FIREBASE — Realtime Database (v9 compat)
+  ═══════════════════════════════════════════ -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <script>
+    /* ════════════════════════════════════════
+       🔥 CONFIGURACIÓN FIREBASE
+       PEGAR TUS CREDENCIALES AQUÍ:
+    ════════════════════════════════════════ */
+    const firebaseConfig = {
+      apiKey:            "AIzaSyBubkizR9z-2GZn8eiBaJGa1Mhw0p0jzus",
+      authDomain:        "psicologiayespiritu-bc5d1.firebaseapp.com",
+      databaseURL:       "https://psicologiayespiritu-bc5d1-default-rtdb.firebaseio.com",
+      projectId:         "psicologiayespiritu-bc5d1",
+      storageBucket:     "psicologiayespiritu-bc5d1.firebasestorage.app",
+      messagingSenderId: "761747320432",
+      appId:             "1:761747320432:web:cd3485d40dfe9ace7fceb5",
+      measurementId:     "G-CRK7K3BL8J"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const REVIEWS_PATH = 'reseñas';
+    const PENDING_PATH = 'reseñas_pendientes'; // pendientes de moderación
+
+    /* ════════════════════════════════════════
+       🛡️ SEGURIDAD DE COMENTARIOS
+       - Filtro de groserías (español)
+       - Anti-XSS (sanitización HTML)
+       - Anti-spam (rate-limit por sesión)
+       - Validación de contenido mínimo
+    ════════════════════════════════════════ */
+
+    // Lista de palabras bloqueadas (en minúsculas, incluye variaciones comunes)
+    const PALABRAS_BLOQUEADAS = [
+      'puta','puto','perra','perro','hijueputa','hijuepucha','gonorrea',
+      'marica','maricon','maricón','verga','culo','mierda','pendejo',
+      'pendeja','idiota','imbécil','imbecil','estupido','estúpido',
+      'estupida','estúpida','cabron','cabrón','cabrona','prostituta',
+      'puto','putita','sexo','follar','coger','mierda','shit','fuck',
+      'bitch','ass','bastard','asshole','damn','crap','faggot',
+      'joder','coño','hostia','gilipollas','subnormal',
+      'maldito','maldita','desgraciado','desgraciada',
+      // variaciones con números/símbolos comunes
+      'put@','pend3jo','c0ño','h1jueputa'
+    ];
+
+    // Patrones que podrían ser inyección de código o XSS
+    const PATRONES_PELIGROSOS = [
+      /<script/i, /<\/script>/i, /javascript:/i, /on\w+\s*=/i,
+      /<iframe/i, /<img/i, /<svg/i, /eval\s*\(/i, /document\./i,
+      /window\./i, /alert\s*\(/i, /fetch\s*\(/i, /http[s]?:\/\//i,
+      /src\s*=/i, /href\s*=/i, /data:/i, /base64/i,
+    ];
+
+    function sanitizarTexto(txt) {
+      // 1. Elimina etiquetas HTML
+      const div = document.createElement('div');
+      div.textContent = txt;
+      return div.innerHTML // ya escapado por textContent
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'");
+    }
+
+    function contienePalabrasBloqueadas(txt) {
+      const lower = txt.toLowerCase().replace(/[^a-záéíóúüñ0-9@]/gi, ' ');
+      return PALABRAS_BLOQUEADAS.some(p => {
+        const regex = new RegExp('\\b' + p + '\\b', 'i');
+        return regex.test(lower) || lower.includes(p);
+      });
+    }
+
+    function contieneCodigoPeligroso(txt) {
+      return PATRONES_PELIGROSOS.some(p => p.test(txt));
+    }
+
+    // Rate limiting — máx 2 reseñas por sesión
+    const SESSION_KEY = 'psi_review_count';
+    const MAX_REVIEWS_PER_SESSION = 2;
+
+    function puedeEnviarReseña() {
+      const count = parseInt(sessionStorage.getItem(SESSION_KEY) || '0');
+      return count < MAX_REVIEWS_PER_SESSION;
+    }
+    function registrarEnvio() {
+      const count = parseInt(sessionStorage.getItem(SESSION_KEY) || '0');
+      sessionStorage.setItem(SESSION_KEY, String(count + 1));
+    }
+
+    function validarComentario(texto) {
+      if (!texto || texto.trim().length < 20) {
+        return { ok: false, msg: 'El comentario debe tener al menos 20 caracteres.' };
+      }
+      if (texto.trim().length > 600) {
+        return { ok: false, msg: 'El comentario no puede superar los 600 caracteres.' };
+      }
+      if (contieneCodigoPeligroso(texto)) {
+        return { ok: false, msg: 'El comentario contiene contenido no permitido (código o enlaces).' };
+      }
+      if (contienePalabrasBloqueadas(texto)) {
+        return { ok: false, msg: 'Por favor usa un lenguaje respetuoso. Tu comentario contiene palabras no permitidas.' };
+      }
+      // Detectar spam: mismo carácter repetido excesivamente
+      if (/(.)\1{8,}/.test(texto)) {
+        return { ok: false, msg: 'El comentario parece contener texto repetido. Por favor escribe tu experiencia real.' };
+      }
+      return { ok: true };
+    }
+
+    /* ════════════════════════════════════════
+       ESTADO GLOBAL
+    ════════════════════════════════════════ */
+    let selectedStars = 0;
+
+    /* ════════════════════════════════════════
+       UTILIDADES
+    ════════════════════════════════════════ */
+    function starsHTML(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
+    function formatDate(ts) {
+      if (!ts) return '';
+      return new Date(ts).toLocaleDateString('es-CO', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function buildCard(r) {
+      const safe_comentario = r.comentario
+        ? r.comentario.replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        : '';
+      const safe_nombre = (r.nombre || 'Paciente Anónimo')
+        .replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const initial = safe_nombre.charAt(0).toUpperCase();
+      return `
+        <div class="testimonio-card">
+          <div class="testimonio-quote">"</div>
+          <p class="testimonio-text">${safe_comentario}</p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar">${initial}</div>
+            <div>
+              <div class="testimonio-name">${safe_nombre}</div>
+              <div class="testimonio-stars">${starsHTML(r.estrellas || 5)}</div>
+              <div class="testimonio-date">${formatDate(r.fecha)}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function updateRatingSummary(reviews) {
+      if (!reviews.length) return;
+      const avg = reviews.reduce((a, r) => a + (r.estrellas || 5), 0) / reviews.length;
+      document.getElementById('summary-avg').textContent   = avg.toFixed(1);
+      document.getElementById('summary-stars').textContent = starsHTML(Math.round(avg));
+      document.getElementById('summary-count').textContent = `Basado en ${reviews.length} experiencia${reviews.length !== 1 ? 's' : ''}`;
+      const el = document.getElementById('rating-summary');
+      el.style.display = 'inline-flex';
+    }
+
+    function renderReviews(reviews) {
+      const initial3   = document.getElementById('reviews-initial');
+      const moreDiv    = document.getElementById('more-reviews');
+      const verMasWrap = document.getElementById('ver-mas-wrap');
+      initial3.innerHTML = reviews.slice(0, 3).map(buildCard).join('');
+      initial3.style.display = 'grid';
+      if (reviews.length > 3) {
+        moreDiv.innerHTML = reviews.slice(3).map(buildCard).join('');
+        verMasWrap.style.display = 'block';
+      } else {
+        moreDiv.innerHTML = '';
+        verMasWrap.style.display = 'none';
+      }
+      document.getElementById('reviews-loading').style.display = 'none';
+      updateRatingSummary(reviews);
+    }
+
+    function loadReviews() {
+      db.ref(REVIEWS_PATH).orderByChild('fecha').once('value')
+        .then(snap => {
+          const data = snap.val();
+          if (!data) {
+            document.getElementById('reviews-loading').style.display = 'none';
+            document.getElementById('reviews-initial').style.display = 'grid';
+            return;
+          }
+          const arr = Object.values(data).sort((a, b) => (b.fecha || 0) - (a.fecha || 0));
+          renderReviews(arr);
+        })
+        .catch(() => {
+          document.getElementById('reviews-loading').innerHTML = '<p style="color:var(--text-muted);">No se pudieron cargar los testimonios.</p>';
+        });
+    }
+
+    function toggleMoreReviews() {
+      const moreDiv = document.getElementById('more-reviews');
+      const btn     = document.getElementById('btn-ver-mas');
+      const expanded = moreDiv.classList.toggle('expanded');
+      btn.classList.toggle('active', expanded);
+      btn.childNodes[0].textContent = expanded ? 'Ver menos ' : 'Leer más historias ';
+    }
+
+    /* ── Selector de estrellas ── */
+    function hoverStars(n) { document.querySelectorAll('.star-btn').forEach(b => b.classList.toggle('hovered', parseInt(b.dataset.val) <= n)); }
+    function resetStarHover() { document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('hovered')); }
+    function selectStar(n) {
+      selectedStars = n;
+      const labels = ['','Malo','Regular','Bueno','Muy bueno','Excelente'];
+      document.getElementById('stars-hint').textContent = labels[n];
+      document.getElementById('stars-hint').style.color = '';
+      document.querySelectorAll('.star-btn').forEach(b => b.classList.toggle('selected', parseInt(b.dataset.val) <= n));
+    }
+
+    function handleAnonToggle(cb) {
+      const nameInput = document.getElementById('review-name');
+      nameInput.disabled = cb.checked;
+      if (cb.checked) nameInput.value = '';
+    }
+
+    /* ════════════════════════════════════════
+       🛡️ ENVIAR RESEÑA CON MODERACIÓN
+    ════════════════════════════════════════ */
+    function submitReview() {
+      const isAnon   = document.getElementById('anon-toggle').checked;
+      const nameRaw  = document.getElementById('review-name').value.trim();
+      const comment  = document.getElementById('review-comment').value.trim();
+      const btn      = document.getElementById('btn-submit');
+      const errEl    = document.getElementById('comment-error');
+
+      // Limpiar errores previos
+      errEl.classList.remove('show');
+      document.getElementById('review-name').style.borderColor = '';
+      document.getElementById('review-comment').style.borderColor = '';
+      document.getElementById('stars-hint').style.color = '';
+
+      // Validar rate limit
+      if (!puedeEnviarReseña()) {
+        errEl.textContent = 'Ya enviaste el máximo de testimonios permitidos por sesión. ¡Gracias por tu participación!';
+        errEl.classList.add('show');
+        return;
+      }
+
+      // Validar nombre
+      if (!isAnon && !nameRaw) {
+        document.getElementById('review-name').style.borderColor = '#f87171';
+        document.getElementById('review-name').focus();
+        return;
+      }
+
+      // Validar estrellas
+      if (selectedStars === 0) {
+        document.getElementById('stars-hint').style.color = '#f87171';
+        document.getElementById('stars-hint').textContent = '← Elige una calificación';
+        return;
+      }
+
+      // Validar y sanear comentario
+      const validacion = validarComentario(comment);
+      if (!validacion.ok) {
+        document.getElementById('review-comment').style.borderColor = '#f87171';
+        errEl.textContent = validacion.msg;
+        errEl.classList.add('show');
+        return;
+      }
+
+      // Sanear nombre
+      const nombreSanitizado = isAnon
+        ? 'Paciente Anónimo'
+        : nameRaw.replace(/[<>\"']/g, '').substring(0, 60);
+
+      // Sanear comentario
+      const comentarioSanitizado = sanitizarTexto(comment).substring(0, 600);
+
+      btn.disabled = true;
+      btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Publicando…`;
+
+      // Se guarda en "reseñas_pendientes" para moderación manual
+      // Cambia PENDING_PATH por REVIEWS_PATH si quieres publicación automática
+      const payload = {
+        nombre:     nombreSanitizado,
+        estrellas:  selectedStars,
+        comentario: comentarioSanitizado,
+        fecha:      Date.now(),
+        aprobado:   false   // campo de moderación
+      };
+
+      db.ref(PENDING_PATH).push(payload)
+        .then(() => {
+          registrarEnvio();
+          // Limpiar
+          document.getElementById('review-name').value    = '';
+          document.getElementById('review-comment').value = '';
+          document.getElementById('anon-toggle').checked  = false;
+          document.getElementById('review-name').disabled = false;
+          document.getElementById('stars-hint').textContent = 'Selecciona';
+          selectedStars = 0;
+          document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('selected'));
+          errEl.classList.remove('show');
+
+          const msg = document.getElementById('success-msg');
+          msg.classList.add('show');
+          setTimeout(() => msg.classList.remove('show'), 6000);
+
+          btn.disabled = false;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Publicar Testimonio`;
+        })
+        .catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Error — inténtalo de nuevo';
+          setTimeout(() => {
+            btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Publicar Testimonio`;
+          }, 3000);
+        });
+    }
+
+    /* ── INIT ── */
+    window.addEventListener('load', loadReviews);
+  </script>
+
+</body>
+</html>
