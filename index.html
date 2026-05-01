@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Psicología y Espíritu | Equilibrio con Propósito</title>
-  <meta name="description" content="Dra. Johana Eraso Diaz — Especialista en Neuropsicología y Psicología Clínica. Atención independiente a adultos y niños. Consultas presenciales en Girardot y virtuales. Agenda tu cita hoy." />
+  <meta name="description" content="Dra. Johana Eraso Diaz — Especialista en Neuropsicología y Psicología Clínica. Atención independiente a adolecentes y adultos. Consultas presenciales en Girardot y virtuales. Agenda tu cita hoy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -52,9 +52,10 @@
     #header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background .4s, box-shadow .4s; }
     #header.scrolled { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 24px rgba(27,58,92,0.09); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-    .nav-logo img { height: 52px; width: auto; object-fit: contain; }
-    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
-    .nav-links a { font-size: .85rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); position: relative; transition: color .25s; }
+    .nav-logo { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { height: 52px; width: auto; object-fit: contain; border-radius: 12px; }
+    .nav-links { display: flex; gap: 3.2rem; align-items: center; }
+    .nav-links a { font-size: .8rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); position: relative; transition: color .25s; }
     .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width .3s var(--ease-out-expo); }
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { width: 100%; }
@@ -146,10 +147,10 @@
     .carousel-wrap { position: relative; z-index: 1; user-select: none; }
     .carousel-track-outer { overflow: hidden; border-radius: 16px; }
     .carousel-track { display: flex; transition: transform .55s var(--ease-out-expo); }
-    .carousel-slide { min-width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; padding: 0 .4rem; }
+    .carousel-slide { min-width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; padding: 0 .4rem; }
 
-    /* En pantallas medianas: 2 columnas */
-    @media (max-width: 860px) { .carousel-slide { grid-template-columns: repeat(2,1fr); } }
+    /* En pantallas medianas: 1 columna */
+    @media (max-width: 860px) { .carousel-slide { grid-template-columns: 1fr; } }
     @media (max-width: 540px) { .carousel-slide { grid-template-columns: 1fr; } }
 
     .diploma-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color .3s, transform .3s; aspect-ratio: 4/3; position: relative; }
@@ -323,7 +324,7 @@
     /* ── FOOTER ── */
     #footer { background: var(--navy-deep); padding: clamp(2.5rem,5vw,4rem) 0 1.5rem; }
     .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .footer-brand img { height: 48px; margin-bottom: 1.2rem; filter: brightness(0) invert(1); opacity: .85; }
+    .footer-brand img { height: 48px; margin-bottom: 1.2rem; opacity: 1; }
     .footer-brand p { font-size: .85rem; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 280px; }
     .footer-col h4 { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.2rem; }
     .footer-col ul { display: flex; flex-direction: column; gap: .65rem; }
@@ -338,6 +339,14 @@
     .footer-bottom a:hover { color: var(--sky-light); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr !important; text-align: center; }
+      .hero-content { max-width: 100%; margin: 0 auto; }
+      .hero-sub { margin-inline: auto; }
+      .hero-ctas { justify-content: center; }
+      .hero-image-wrap { display: none; }
+      .hero-circle { display: none; }
+    }
     @media (max-width: 900px) {
       .sobre-grid { grid-template-columns: 1fr; }
       .sobre-photo-wrap { max-width: 380px; margin-inline: auto; }
@@ -358,6 +367,7 @@
     @media (max-width: 480px) { .sobre-badge { right: 8px; } }
     .text-center { text-align: center; }
   </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -398,13 +408,13 @@
     <div class="hero-bg"></div>
     <div class="hero-pattern"></div>
     <div class="hero-circle"></div>
-    <div class="container">
+    <div class="container hero-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
       <div class="hero-content">
-        <p class="hero-eyebrow">Neuropsicología &amp; Psicología Clínica</p>
+        <p class="hero-eyebrow">Equilibrio con proposito</p>
         <h1 class="hero-title">Psicología<br /><em>y Espíritu</em></h1>
         <p class="hero-sub">
           <strong style="color:rgba(255,255,255,0.92);font-weight:500;">Dra. Johana Eraso Diaz</strong><br/>
-          Diplomada en Neuropsicología y Psicología Clínica — atención independiente, cercana y transformadora para adultos y niños.
+          Diplomados en Neuropsicología y Psicología Clínica — atención independiente, cercana y transformadora para adolecentes y adultos.
         </p>
         <div class="hero-ctas">
           <a href="#agendar" class="btn-primary">
@@ -412,6 +422,21 @@
             Agenda tu Primera Cita
           </a>
           <a href="#servicios" class="btn-outline">Ver Servicios</a>
+        </div>
+      </div>
+      <div class="hero-image-wrap" style="position:relative;display:flex;justify-content:center;align-items:center;animation:fadeUp 1.2s var(--ease-out-expo) .6s both;">
+        <div style="position:absolute;inset:-30px;background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,162,39,0.12) 0%, transparent 70%);z-index:-1;animation:float 6s ease-in-out infinite;"></div>
+        <div style="position:relative;width:100%;max-width:380px;aspect-ratio:3/4;border-radius:20px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,0.35);border:2px solid rgba(201,162,39,0.2);">
+          <img src="img/fotoportada.jpeg" alt="Dra. Johana Eraso Diaz" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
+        <div style="position:absolute;right:-20px;top:15%;width:70px;height:70px;border-radius:50%;border:2px solid rgba(201,162,39,0.25);animation:float 4s ease-in-out infinite;"></div>
+        <div style="position:absolute;left:-15px;bottom:20%;display:grid;grid-template-columns:repeat(3, 6px);gap:6px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(201,162,39,0.3);"></span>
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(122,164,208,0.3);"></span>
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(201,162,39,0.3);"></span>
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(122,164,208,0.3);"></span>
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(201,162,39,0.3);"></span>
+          <span style="width:6px;height:6px;border-radius:50%;background:rgba(122,164,208,0.3);"></span>
         </div>
       </div>
     </div>
@@ -443,7 +468,7 @@
           <p>Psicóloga con experiencia en acompañamiento psicosocial en escenarios de violencia, eventos postraumáticos, capacitación de empoderamiento personal, psicoterapia individual e intervenciones psicológicas con enfoque cognitivo conductual.</p>
           <div style="display:flex;align-items:center;gap:1rem;margin-top:1.4rem;margin-bottom:.2rem;padding:1rem 1.2rem;background:rgba(122,164,208,0.10);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" style="flex-shrink:0"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            <p style="font-size:.88rem;color:var(--navy);font-weight:500;margin:0;"><strong style="display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem;">Pacientes que atiendo</strong>Adultos y Niños</p>
+            <p style="font-size:.88rem;color:var(--navy);font-weight:500;margin:0;"><strong style="display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem;">Pacientes que atiendo</strong>Adolecentes mayores a 15 años y Adultos</p>
           </div>
           <div class="sobre-tags">
             <span class="tag">Celopatía</span>
@@ -788,10 +813,10 @@
 
           <details class="faq-item">
             <summary>
-              <span class="faq-question">¿Atiendes a niños o solamente a adultos?</span>
+              <span class="faq-question">¿Atiendes a adolecentes o solamente a adultos?</span>
               <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             </summary>
-            <div class="faq-answer"><p>Brindo atención psicológica tanto a <strong>adultos como a niños</strong>. Cuento con diplomados en Neuropsicología y Psicología Clínica, lo que me permite adaptar las metodologías según la edad del paciente.</p></div>
+            <div class="faq-answer"><p>Brindo atención psicológica tanto a <strong>adolecentes como a adultos</strong>. Cuento con diplomados en Neuropsicología y Psicología Clínica, lo que me permite adaptar las metodologías según la edad del paciente.</p></div>
           </details>
         </div>
       </div>
@@ -827,7 +852,7 @@
   <!-- Calendly inline widget begin -->
   <div class="calendly-inline-widget" 
        data-url="https://calendly.com/psicoespiritu-johana" 
-       style="min-width:320px;height:700px;">
+       style="min-width:400px;height:700px;">
   </div>
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <!-- Calendly inline widget end -->
@@ -852,8 +877,14 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <img src="img/LOGO PSICOLOGÍA Y ESPÍRITU.png" alt="Psicología y Espíritu" loading="lazy" />
-          <p>Dra. Johana Eraso Diaz — Especialista independiente en Neuropsicología y Psicología Clínica. Atención personalizada para adultos y niños.</p>
+          <div class="footer-logo-wrap" style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1rem;">
+            <img src="img/LOGO PSICOLOGÍA Y ESPÍRITU.png" alt="Psicología y Espíritu" loading="lazy" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,162,39,0.3);box-shadow:0 4px 15px rgba(0,0,0,0.2);" />
+            <div>
+              <div style="font-family:var(--font-display);font-size:1.4rem;color:var(--white);font-weight:300;">Psicología <span style="color:var(--gold-light);font-style:italic;">y Espíritu</span></div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,0.4);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem;">Dra. Johana Eraso Diaz</div>
+            </div>
+          </div>
+          <p style="margin-top:1rem;">Especialista independiente en Neuropsicología y Psicología Clínica. Atención personalizada para adolecentes y adultos.</p>
         </div>
         <div class="footer-col">
           <h4>Navegación</h4>
@@ -870,9 +901,10 @@
         <div class="footer-col">
           <h4>Redes Sociales</h4>
           <div class="social-links">
-            <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="https://www.instagram.com/psicologia.y.espiritu?utm_source=qr&igsh=NjFycnh3dzI0cDh3" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.facebook.com/share/1BHBQgBa2T/" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
             <a href="https://wa.me/573116449502" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.073 23.208a.75.75 0 00.92.92l5.347-1.459A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.89 0-3.663-.523-5.176-1.432l-.372-.22-3.853 1.051 1.052-3.852-.22-.372A9.953 9.953 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg></a>
+            <a href="https://www.tiktok.com/@psicologiayespiritu?_r=1&_t=ZS-95yj4FltmQa" class="social-link" aria-label="TikTok" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-1.88 4.9 4.9 0 0 1-1-3.4V2h-3.4v13.7a2.82 2.82 0 0 1-2.8 2.84 2.88 2.88 0 0 1-2.88-2.88c0-1.6 1.28-2.88 2.88-2.88.3 0 .59.06.88.15V8.26a6.1 6.1 0 0 0-.88-.08c-3.63 0-6.59 2.96-6.59 6.59 0 3.63 2.96 6.59 6.59 6.59 3.63 0 6.59-2.96 6.59-6.59v-2.3a8.08 8.08 0 0 0 4.59 1.5v-3.4a4.85 4.85 0 0 1-1.13-.15z"/></svg></a>
           </div>
           <div style="margin-top:1.5rem;">
             <h4>Contacto</h4>
@@ -947,16 +979,17 @@
     //  CARRUSEL DE DIPLOMAS
     // ══════════════════════════════════════
     const diplomas = [
+      { src: 'img/titulo5.jpeg', label: 'Título Profesional en Psicología' },
+      { src: 'img/titulo8.jpeg', label: 'Diplomado en Evaluación e Intervención Psicológica en Terapias de Parejas — CIL (140h)' },
+      { src: 'img/titulo3.jpeg', label: 'Diplomado en Psicología Clínica — Corporación Internacional Líderes' },
       { src: 'img/titulo1.jpeg', label: 'Diplomado en Interpretación del Lenguaje Corporal' },
-      { src: 'img/titulo2.jpeg', label: 'Certificación SENA' },
-      { src: 'img/titulo3.jpeg', label: 'Diplomado en Psicología Clínica — CIL' },
-      { src: 'img/titulo4.jpeg', label: 'Certificación SENA' },
-      { src: 'img/titulo5.jpeg', label: 'Título en Psicología' },
       { src: 'img/titulo6.jpeg', label: 'Curso de Técnicas Psicológicas' },
+      { src: 'img/titulo2.jpeg', label: 'Certificación SENA' },
+      { src: 'img/titulo4.jpeg', label: 'Certificación SENA' },
       { src: 'img/titulo7.jpeg', label: 'Certificación SENA' },
     ];
 
-    const PER_SLIDE = 3; // cuántos diplomas por slide (ajusta si cambias breakpoints)
+    const PER_SLIDE = 4; // cuántos diplomas por slide (optimizado para 8 diplomas = 2 slides)
     let currentSlide = 0;
     const totalSlides = Math.ceil(diplomas.length / PER_SLIDE);
 
